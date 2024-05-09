@@ -1,9 +1,11 @@
 'use client';
 
+import Head from 'next/head';
 import StyledComponentsRegistry from '@/lib/registry';
 import { ThemeProvider } from 'styled-components';
+import { Footer } from '@/components/Footer';
 import theme from '../styles/theme';
-import Head from 'next/head';
+import '../styles/globals.css';
 
 export default function RootLayout({
   children,
@@ -19,7 +21,10 @@ export default function RootLayout({
       </Head>
       <body>
         <StyledComponentsRegistry>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          <ThemeProvider theme={theme}>
+            {children}
+            <Footer />
+          </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

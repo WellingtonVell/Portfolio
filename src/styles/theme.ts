@@ -18,13 +18,17 @@ export default {
       bold: 700,
     },
     sizes: {
-      small: '2.2rem',
-      medium: '2.8rem',
-      large: '3.6rem',
+      xsmall: '1rem',
+      small: '2rem',
+      medium: '3rem',
+      large: '4rem',
+      xlarge: '5rem',
     },
   },
   colors: {
     background: '#d2e3ec',
+    content: '#612F74',
+    text: '#000000',
   },
   spacings: {
     small: '2rem',
