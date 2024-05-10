@@ -29,6 +29,7 @@ export default {
     background: '#d2e3ec',
     content: '#612F74',
     text: '#000000',
+    red: '#ff0000',
   },
   spacings: {
     small: '2rem',

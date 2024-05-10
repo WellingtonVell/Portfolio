@@ -48,6 +48,7 @@ const GlobalStyles = createGlobalStyle`
       height: 100vh;
     }
 
+    p,
     body,
     input,
     textarea,
