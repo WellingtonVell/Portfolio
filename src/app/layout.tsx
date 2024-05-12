@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { Footer } from '@/components/Footer';
 import theme from '../styles/theme';
 import '../styles/globals.css';
+import { Navbar } from '@/components/Navbar';
 
 export default function RootLayout({
   children,
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme}>
+            <Navbar />
             {children}
             <Footer />
           </ThemeProvider>

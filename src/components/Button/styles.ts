@@ -50,7 +50,9 @@ const variantStyles = {
       color: ${(props) => props.theme.colors.text};
     `,
     outline: css`
+      background-color: transparent;
       border-width: 0.25rem;
+      border-style: solid;
       border-color: ${(props) => props.theme.colors.content};
       color: ${(props) => props.theme.colors.text};
     `,

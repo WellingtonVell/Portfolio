@@ -1,3 +1,5 @@
+'use client';
+
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 import * as S from './styles';
 

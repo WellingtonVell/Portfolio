@@ -9,7 +9,6 @@ export const Footer = styled.footer`
   min-height: 15rem;
   place-content: center;
   border-top-width: 0.2rem;
-  margin-top: 3rem;
   border-color: ${(props) => props.theme.colors.text};
 `;
 
@@ -17,7 +16,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+  text-align: center;
 `;
 
 export const Name = styled.p`

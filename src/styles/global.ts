@@ -57,11 +57,16 @@ const GlobalStyles = createGlobalStyle`
     }
   `}
 
+  p {
+    word-break: break-word;
+  }
+  
   button {
     cursor: pointer;
     border: none;
     background-color: initial;
   }
+
 `;
 
 export default GlobalStyles;

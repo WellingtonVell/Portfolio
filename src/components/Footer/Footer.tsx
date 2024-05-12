@@ -1,6 +1,8 @@
 import { Github, Gmail, LinkedIn } from '@/icons';
 import * as S from './styles';
 import Link from 'next/link';
+import Logo from '../../../public/logo.png';
+import Image from 'next/image';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,14 +12,14 @@ const Footer = () => {
   return (
     <S.Footer>
       <S.Container>
-        <p>LOGO</p>
+        <Image src={Logo} alt='Logo' width={150} />
         <S.Name>{name}</S.Name>
         <S.Work>{work}</S.Work>
         <S.Socials>
-          <Link href='https://www.linkedin.com/in/wellington-costavell'>
+          <Link href='https://www.linkedin.com/in/wellington-costavell' target='_blank'>
             <LinkedIn color='#0077B5' />
           </Link>
-          <Link href='https://github.com/WellingtonVell'>
+          <Link href='https://github.com/WellingtonVell' target='_blank'>
             <Github color='#ffffff' />
           </Link>
           <Link href='mailto:wellingtonvell@gmail.com'>

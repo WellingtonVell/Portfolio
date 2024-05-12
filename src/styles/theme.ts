@@ -18,7 +18,7 @@ export default {
       bold: 700,
     },
     sizes: {
-      xsmall: '1rem',
+      xsmall: '1.5rem',
       small: '2rem',
       medium: '3rem',
       large: '4rem',
@@ -27,7 +27,7 @@ export default {
   },
   colors: {
     background: '#d2e3ec',
-    content: '#612F74',
+    content: '#06b6d4',
     text: '#000000',
     red: '#ff0000',
   },
