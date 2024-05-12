@@ -2,14 +2,11 @@ import * as S from './styles';
 import Image from 'next/image';
 import Logo from '../../../public/logo.png';
 import { NavbarItens } from './NavbarItens';
+import { Close, Menu } from '@/icons';
+import { useNavbar } from './useNavbar';
 
 const Navbar = () => {
-  const handlescrollIntoView = (elementId: string) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const { toggleMenu, handlescrollIntoView, showMenu, menuRef } = useNavbar();
 
   return (
     <S.Nav>
@@ -22,7 +19,19 @@ const Navbar = () => {
             </S.Itens>
           ))}
         </S.List>
+
+        <S.MenuButton onClick={toggleMenu}>{showMenu ? <Close /> : <Menu />}</S.MenuButton>
       </S.Container>
+
+      {showMenu && (
+        <S.MenuList ref={menuRef}>
+          {NavbarItens.map((item) => (
+            <S.Itens key={item.elementId} onClick={() => handlescrollIntoView(item.elementId)}>
+              <S.Icon>{item.icon}</S.Icon> <S.Label>{item.label}</S.Label>
+            </S.Itens>
+          ))}
+        </S.MenuList>
+      )}
     </S.Nav>
   );
 };

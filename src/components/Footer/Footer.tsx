@@ -29,7 +29,13 @@ const Footer = () => {
         <S.Licenses>
           © {currentYear} {name}. All rights reserved.
         </S.Licenses>
-        <S.Licenses>Realeased under the MIT License.</S.Licenses>
+        <S.Licenses>
+          Realeased under the{' '}
+          <Link href='https://opensource.org/license/mit' target='_blank'>
+            MIT License
+          </Link>
+          .
+        </S.Licenses>
       </S.Container>
     </S.Footer>
   );

@@ -5,3 +5,5 @@ export { default as Home } from './Home';
 export { default as Contact } from './Contact';
 export { default as Gears } from './Gears';
 export { default as Books } from './Books';
+export { default as Close } from './Close';
+export { default as Menu } from './Menu';

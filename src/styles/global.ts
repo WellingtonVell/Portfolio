@@ -40,12 +40,15 @@ const GlobalStyles = createGlobalStyle`
   ${({ theme }) => css`
     html {
       font-size: 62.5%;
+      scroll-behavior: smooth;
+      scroll-padding-top: 7.3rem;
     }
 
     body {
       font-size: 1rem;
       background-color: ${theme.colors.background};
       height: 100vh;
+      padding-top: 7.3rem;
     }
 
     p,
