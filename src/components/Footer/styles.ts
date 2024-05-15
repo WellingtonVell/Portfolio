@@ -44,3 +44,9 @@ export const Licenses = styled.p`
   font-weight: ${(props) => props.theme.font.weight.light};
   font-size: ${(props) => props.theme.font.sizes.xsmall};
 `;
+
+export const MIT = styled.span`
+  font-style: italic;
+  text-decoration-line: underline;
+  text-underline-offset: 0.5rem;
+`;

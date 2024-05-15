@@ -32,7 +32,7 @@ const Footer = () => {
         <S.Licenses>
           Realeased under the{' '}
           <Link href='https://opensource.org/license/mit' target='_blank'>
-            MIT License
+            <S.MIT>MIT License</S.MIT>
           </Link>
           .
         </S.Licenses>

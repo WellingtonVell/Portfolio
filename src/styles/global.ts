@@ -70,6 +70,9 @@ const GlobalStyles = createGlobalStyle`
     background-color: initial;
   }
 
+  section {
+    height: 100vh;
+  }
 `;
 
 export default GlobalStyles;

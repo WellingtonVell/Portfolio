@@ -6,7 +6,7 @@ import { Close, Menu } from '@/icons';
 import { useNavbar } from './useNavbar';
 
 const Navbar = () => {
-  const { toggleMenu, handlescrollIntoView, showMenu, menuRef } = useNavbar();
+  const { toggleMenu, handlescrollIntoView, showMenu, menuRef, currentSection } = useNavbar();
 
   return (
     <S.Nav>
@@ -14,7 +14,13 @@ const Navbar = () => {
         <Image src={Logo} alt='Logo' width={50} />
         <S.List>
           {NavbarItens.map((item) => (
-            <S.Itens key={item.elementId} onClick={() => handlescrollIntoView(item.elementId)}>
+            <S.Itens
+              $isActive={item.label == currentSection}
+              key={item.elementId}
+              onClick={() => {
+                handlescrollIntoView(item.elementId);
+              }}
+            >
               <S.Icon>{item.icon}</S.Icon> <S.Label>{item.label}</S.Label>
             </S.Itens>
           ))}
@@ -23,15 +29,17 @@ const Navbar = () => {
         <S.MenuButton onClick={toggleMenu}>{showMenu ? <Close /> : <Menu />}</S.MenuButton>
       </S.Container>
 
-      {showMenu && (
-        <S.MenuList ref={menuRef}>
-          {NavbarItens.map((item) => (
-            <S.Itens key={item.elementId} onClick={() => handlescrollIntoView(item.elementId)}>
-              <S.Icon>{item.icon}</S.Icon> <S.Label>{item.label}</S.Label>
-            </S.Itens>
-          ))}
-        </S.MenuList>
-      )}
+      <S.MenuList $isOpen={showMenu} ref={menuRef}>
+        {NavbarItens.map((item) => (
+          <S.Itens
+            $isActive={item.label == currentSection}
+            key={item.elementId}
+            onClick={() => handlescrollIntoView(item.elementId)}
+          >
+            <S.Icon>{item.icon}</S.Icon> <S.Label>{item.label}</S.Label>
+          </S.Itens>
+        ))}
+      </S.MenuList>
     </S.Nav>
   );
 };

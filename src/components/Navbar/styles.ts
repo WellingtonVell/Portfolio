@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Nav = styled.nav`
   position: fixed;
@@ -26,7 +26,7 @@ export const List = styled.ul`
   }
 `;
 
-export const Itens = styled.li`
+export const Itens = styled.li<{ $isActive: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -36,10 +36,14 @@ export const Itens = styled.li`
     color: #fff;
   }
 
+  color: ${({ $isActive }) => ($isActive ? '#0000ff' : 'inherit')};
+
   @media (max-width: 728px) {
     justify-content: center;
     width: 100%;
     border-radius: 1rem;
+    padding: 0.5rem 1rem;
+
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
     }
@@ -47,7 +51,7 @@ export const Itens = styled.li`
 `;
 
 export const Icon = styled.span`
-  transition: transform 0.3s ease;
+  transition: transform 0.6s ease;
   &:hover {
     transform: scaleX(-1);
   }
@@ -69,8 +73,30 @@ export const MenuButton = styled.span`
   }
 `;
 
-export const MenuList = styled.ul`
-  display: flex;
+const SlideIn = keyframes`
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const SlideOut = keyframes`
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+`;
+
+export const MenuList = styled.ul<{ $isOpen: boolean }>`
+  display: ${({ $isOpen }) => ($isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   gap: 2rem;
@@ -82,4 +108,5 @@ export const MenuList = styled.ul`
   border-width: 0.25rem;
   background-color: ${(props) => props.theme.colors.content};
   font-size: ${(props) => props.theme.font.sizes.xsmall};
+  animation: ${({ $isOpen }) => ($isOpen ? SlideIn : SlideOut)} 0.5s ease forwards;
 `;
