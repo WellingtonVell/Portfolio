@@ -6,7 +6,8 @@ import { Close, Menu } from '@/icons';
 import { useNavbar } from './useNavbar';
 
 const Navbar = () => {
-  const { toggleMenu, handlescrollIntoView, showMenu, menuRef, currentSection } = useNavbar();
+  const { toggleMenu, handlescrollIntoView, isAnimating, activeSection, showMenu, menuRef } =
+    useNavbar();
 
   return (
     <S.Nav>
@@ -15,7 +16,7 @@ const Navbar = () => {
         <S.List>
           {NavbarItens.map((item) => (
             <S.Itens
-              $isActive={item.label == currentSection}
+              $isActive={activeSection === item.elementId}
               key={item.elementId}
               onClick={() => {
                 handlescrollIntoView(item.elementId);
@@ -29,10 +30,10 @@ const Navbar = () => {
         <S.MenuButton onClick={toggleMenu}>{showMenu ? <Close /> : <Menu />}</S.MenuButton>
       </S.Container>
 
-      <S.MenuList $isOpen={showMenu} ref={menuRef}>
+      <S.MenuList $isOpen={showMenu} $isAnimating={isAnimating} ref={menuRef}>
         {NavbarItens.map((item) => (
           <S.Itens
-            $isActive={item.label == currentSection}
+            $isActive={activeSection === item.elementId}
             key={item.elementId}
             onClick={() => handlescrollIntoView(item.elementId)}
           >

@@ -1,9 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 
 export const Nav = styled.nav`
-  position: fixed;
+  position: sticky;
   top: 0;
-  width: 100%;
   z-index: 100;
   background-color: ${(props) => props.theme.colors.content};
 `;
@@ -95,13 +94,15 @@ const SlideOut = keyframes`
   }
 `;
 
-export const MenuList = styled.ul<{ $isOpen: boolean }>`
-  display: ${({ $isOpen }) => ($isOpen ? 'flex' : 'none')};
+export const MenuList = styled.ul<{ $isOpen: boolean; $isAnimating: boolean }>`
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   position: fixed;
   right: 0;
+  top: 7.3rem;
+  z-index: 100;
   width: 65%;
   padding: 2rem;
   border-radius: 1rem;
@@ -109,4 +110,5 @@ export const MenuList = styled.ul<{ $isOpen: boolean }>`
   background-color: ${(props) => props.theme.colors.content};
   font-size: ${(props) => props.theme.font.sizes.xsmall};
   animation: ${({ $isOpen }) => ($isOpen ? SlideIn : SlideOut)} 0.5s ease forwards;
+  visibility: ${({ $isOpen, $isAnimating }) => ($isOpen || $isAnimating ? 'visible' : 'hidden')};
 `;

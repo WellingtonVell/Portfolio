@@ -3,12 +3,20 @@ import { NavbarItens } from './NavbarItens';
 
 export const useNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [currentSection, setCurrentSection] = useState<string>('');
-
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
   const menuRef = useRef<HTMLUListElement>(null);
 
   const toggleMenu = () => {
-    setShowMenu(!showMenu);
+    if (showMenu) {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setShowMenu(false);
+        setIsAnimating(false);
+      }, 500);
+    } else {
+      setShowMenu(true);
+    }
   };
 
   const handlescrollIntoView = (elementId: string) => {
@@ -19,34 +27,10 @@ export const useNavbar = () => {
   };
 
   useEffect(() => {
-    const determineCurrentSection = () => {
-      var navigation = document.querySelector('nav');
-      const navigationHeight = navigation ? navigation.offsetHeight + 55 : 74;
-      const middleOfScreen = window.innerHeight / 2;
-
-      console.log(navigationHeight);
-
-      let cs = '';
-
-      NavbarItens.forEach((item) => {
-        const element = document.getElementById(item.elementId);
-        const elementPosition = element?.getBoundingClientRect().top || 0;
-
-        if (elementPosition <= navigationHeight + middleOfScreen) {
-          cs = item.label;
-        }
-      });
-
-      return cs;
-    };
-
-    setCurrentSection(determineCurrentSection());
-
     const handleScroll = () => {
       if (showMenu) {
         setShowMenu(false);
       }
-      setCurrentSection(determineCurrentSection());
     };
 
     const handleResize = () => {
@@ -72,5 +56,36 @@ export const useNavbar = () => {
     };
   }, [showMenu]);
 
-  return { toggleMenu, handlescrollIntoView, menuRef, showMenu, currentSection };
+  useEffect(() => {
+    const sections = NavbarItens.map((item) => document.getElementById(item.elementId));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.9,
+      }
+    );
+
+    sections.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
+
+  return { toggleMenu, handlescrollIntoView, isAnimating, menuRef, showMenu, activeSection };
 };
